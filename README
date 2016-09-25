@@ -1,0 +1,41 @@
+# MAZA SERVER 
+
+Domains
++ maza.dev
++ oms.maza.dev
++ sys.maza.dev
+
+Path
+/home/maza/domains/maza.dev/public_html
+/home/maza/domains/oms.maza.dev/public_html
+/home/maza/domains/sys.maza.dev/public_html
+
+Setup MAZA server
+
+1. Install Docker latest version with native virtualization
+
+2. Pull MySQL server
++ docker pull mysql
+
+3. Run MySQL container with name "mysql"
++ docker run --name mysql -v /my/own/datadir:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+
+4. Pull Maza server
++ docker pull longvnit/centos6-webserver
++ mkdir ~/maza-server && ~/maza-server
++ git clone https://github.com/longvnit/maza-server.git .
+
+5. Build custom image for maza server
++ cd ~/maza-server
++ docker build .
+
+6. At local make directories with structure bellow
++ mkdir -p ~/maza/domains/maza.dev/public_html
++ mkdir -p ~/maza/domains/maza.dev/cgi-bin
++ mkdir -p ~/maza/domains/oms.maza.dev/public_html
++ mkdir -p ~/maza/domains/maza.dev/cgi-bin
++ mkdir -p ~/maza/domains/sys.maza.dev/public_html
++ mkdir -p ~/maza/domains/maza.dev/cgi-bin
+
+7. Run maza container
++ docker run -it --name maza -v /path/to/maza/folder/on/your/machine:/home/maza -p 80:80 -p 9000:9000  -d <Image ID>
