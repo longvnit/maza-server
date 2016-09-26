@@ -53,11 +53,22 @@ if [ "$SERVER_NAME" == "" ]; then
 	sed -i "/Listen 80/a ServerName $HOST_NAME" /webserver/apache/conf/httpd.conf
 fi
 
+# RECONFIG XDEBUG
+if [ -e /webserver/php/etc/php.d/xdebug.ini ]; then
+	echo "zend_extension=xdebug.so" > /webserver/php/etc/php.d/xdebug.ini
+	echo "xdebug.remote_host=10.254.254.254" >> /webserver/php/etc/php.d/xdebug.ini
+	echo "xdebug.remote_enable=1" >> /webserver/php/etc/php.d/xdebug.ini
+	echo "xdebug.remote_autostart=1" >> /webserver/php/etc/php.d/xdebug.ini
+fi
+
 # cd maza root
 cd /home/maza
 
 # Start Service
 /etc/init.d/httpd start
 /etc/init.d/php-fpm start
+
+# supervisor
+yum install supervisor -y
 
 exec "$@"

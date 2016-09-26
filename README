@@ -38,4 +38,8 @@ Setup MAZA server
 + mkdir -p ~/maza/domains/maza.dev/cgi-bin
 
 7. Run maza container
-+ docker run -it --name maza -v /path/to/maza/folder/on/your/machine:/home/maza -p 80:80 -p 9000:9000  --link mysql -d <Image ID>
++ docker run -it --name maza -v /path/to/maza/folder/on/your/machine:/home/maza -p 80:80 --link mysql -d <Image ID>
+
+8. Run Xdebug
++ Make loop interface with command: sudo ifconfig lo0 alias 10.254.254.254
++ Config Xdebug with ip 10.254.254.254 and port 9000
