@@ -39,9 +39,11 @@ if [ ! -e /webserver/apache/conf/extra/vhost/maza.dev.conf ]; then
 	cp maza.dev.conf oms.maza.dev.conf
 	sed -i 's/maza.dev/oms.maza.dev/g' oms.maza.dev.conf
 	sed -i '/FastCgiExternalServer/d' oms.maza.dev.conf
+	sed -i 's/oms.maza.dev\/cgi-bin/maza.dev\/cgi-bin/g' oms.maza.dev.conf
 	cp maza.dev.conf sys.maza.dev.conf
 	sed -i 's/maza.dev/sys.maza.dev/g' sys.maza.dev.conf
 	sed -i '/FastCgiExternalServer/d' sys.maza.dev.conf
+	sed -i 's/sys.maza.dev\/cgi-bin/maza.dev\/cgi-bin/g' sys.maza.dev.conf
 fi
 
 # RECONFIG APACHE
