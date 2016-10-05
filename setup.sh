@@ -66,7 +66,7 @@ wget https://github.com/rabbitmq/erlang-rpm/releases/download/v1.4.6/erlang-19.1
 rpm -ivh erlang-19.1.1-1.el6.x86_64.rpm
 rpm --import https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
 wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.5/rabbitmq-server-3.6.5-1.noarch.rpm
-yum install logrotate socat -y
+yum install logrotate socat supervisor -y
 rpm -ivh rabbitmq-server-3.6.5-1.noarch.rpm
 
 # cd maza root
@@ -75,8 +75,5 @@ cd /home/maza
 # Start Service
 /etc/init.d/httpd start
 /etc/init.d/php-fpm start
-
-# supervisor
-yum install supervisor -y
 
 exec "$@"
