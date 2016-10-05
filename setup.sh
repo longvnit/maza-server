@@ -61,6 +61,14 @@ if [ -e /webserver/php/etc/php.d/xdebug.ini ]; then
 	echo "xdebug.remote_autostart=1" >> /webserver/php/etc/php.d/xdebug.ini
 fi
 
+# Setup RabbiMQ
+wget https://github.com/rabbitmq/erlang-rpm/releases/download/v1.4.6/erlang-19.1.1-1.el6.x86_64.rpm
+rpm -ivh erlang-19.1.1-1.el6.x86_64.rpm
+rpm --import https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
+wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.5/rabbitmq-server-3.6.5-1.noarch.rpm
+yum install logrotate socat -y
+rpm -ivh rabbitmq-server-3.6.5-1.noarch.rpm
+
 # cd maza root
 cd /home/maza
 
